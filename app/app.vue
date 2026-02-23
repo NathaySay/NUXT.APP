@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { NavigateBar } from '@nuxt/ui'
-import type { NavigateFooter } from '@nuxt/ui'
+import type { NavigateBar, NavigateFooter } from '@nuxt/ui'
+import tailwindcss from '@tailwindcss/vite'
 
 const route = useRoute()
 
@@ -58,14 +58,14 @@ const menus = computed<NavigateFooter[]>(() => [
 </script>
 
 <template>
-  <UApp class="w-fullscreen">
-    <UHeader class="text-center font-bold text-lg">
+  <UApp>
+    <UHeader class="text-center font-bold text-lg display-flex justify-between gap-10">
       <UNavigationMenu :items="items" />
-      <UInput type="file"/>
+      <UInput type="file" />
     </UHeader>
     <UMain />
     <UFooter>
-      <UNavigationMenu :items="menus"/>
+      <UNavigationMenu :items="menus" />
     </UFooter>
   </UApp>
 </template>
