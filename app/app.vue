@@ -58,9 +58,10 @@ const menus = computed<NavigateFooter[]>(() => [
 </script>
 
 <template>
-  <UApp>
+  <UApp class="w-fullscreen">
     <UHeader class="text-center font-bold text-lg">
       <UNavigationMenu :items="items" />
+      <UInput type="file"/>
     </UHeader>
     <UMain />
     <UFooter>
