@@ -28,7 +28,7 @@ const items = computed<NavigationMenuItem[]>(() => [
 </script>
 
 <template>
-  <UApp>
+  <UApp class="w-fullscreen">
     <UHeader>
       <template #title>
         <Logo class="h-6 w-auto" />
