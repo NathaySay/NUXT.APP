@@ -9,7 +9,7 @@ const items = computed<NavigateBar[]>(() => [
     label: 'Home',
     to: '/',
     icon: 'i-lucide-home',
-    active: route.path === '/'
+    active:  route.path === '/'
   },
   {
     label: 'Dashboard',
@@ -34,19 +34,19 @@ const items = computed<NavigateBar[]>(() => [
 const menus = computed<NavigateFooter[]>(() => [
   {
     label: 'About',
-    to: '/about'
+    to: '/about',
   },
   {
     label: 'Contact',
-    to: '/contact'
+    to: '/contact',
   },
   {
     label: 'Privacy Policy',
-    to: '/privacy-policy'
+    to: '/privacy-policy',
   },
   {
     label: 'Terms of Service',
-    to: '/terms-of-service'
+    to: '/terms-of-service',
   }
 ])
 
@@ -55,7 +55,7 @@ const main = computed<NavigateMain[]>(() => [
     label: 'Dashboard',
     to: '/dashboard',
     icon: 'i-lucide-layout-dashboard',
-    active: route.path === '/dashboard'
+    active: true
   },
   {
     label: 'Tasks',
