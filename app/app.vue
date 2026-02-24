@@ -55,13 +55,28 @@ const main = computed<NavigateMain[]>(() => [
     label: 'Dashboard',
     to: '/dashboard',
     icon: 'i-lucide-layout-dashboard',
-    active: route.path === '/dashboard'
+    active: true
   },
   {
     label: 'Tasks',
     to: '/tasks',
     icon: 'i-lucide-list-check',
-    active: route.path === '/tasks'
+    active: route.path === '/tasks',
+    defaultOpen: false,
+    children: [
+      {
+        label: 'My Tasks',
+        to: '/tasks/my',
+        icon: 'i-lucide-user',
+        active: route.path === '/tasks/my'
+      },
+      {
+        label: 'Team Tasks',
+        to: '/tasks/team',
+        icon: 'i-lucide-users',
+        active: route.path === '/tasks/team'
+      }
+    ]
   },
   {
     label: 'Calendar',
@@ -91,7 +106,21 @@ const main = computed<NavigateMain[]>(() => [
     label: 'Help',
     to: '/help',
     icon: 'i-lucide-help-circle',
-    active: route.path === '/help'
+    active: route.path === '/help',
+    children:[
+      {
+        label: 'Documentation',
+        to: '/help/documentation',
+        icon: 'i-lucide-file-text',
+        active: route.path === '/help/documentation'
+      },
+      {
+        label: 'Call 24/7',
+        to: '/help/call',
+        icon: 'i-lucide-phone',
+        active: route.path === '/help/call'
+      }
+    ]
   },
   {
     label: 'Logout',
@@ -104,7 +133,7 @@ const main = computed<NavigateMain[]>(() => [
 
 <template>
   <UApp>
-    <UHeader class="text-center font-bold text-lg bg-gray-950 text-white">
+    <UHeader title="Welcome" class=" text-center font-bold text-lg bg-gray-950 text-white">
       <UNavigationMenu
         :items="items"
         class="w-fullscreen "
@@ -112,11 +141,11 @@ const main = computed<NavigateMain[]>(() => [
       <UInput type="file" />
     </UHeader>
     <UMain>
-      <div class="flex gap-4">
+      <div class=" bg-gray-800 w-60 h-240">
         <UNavigationMenu
           orientation="vertical"
           :items="main"
-          class="text-2xl text-black p-5 "
+          class="text-black text-center font-bold "
         />
       </div>
     </UMain>

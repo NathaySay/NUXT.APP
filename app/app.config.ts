@@ -5,7 +5,7 @@ export default defineAppConfig({
       neutral: 'slate'
     },
     main: {
-      base: 'min-h-[calc(100vh-var(--ui-header-height))]'
+      base: 'min-h-[calc(auto-var(--ui-header-height))]'
     }
   }
 })
