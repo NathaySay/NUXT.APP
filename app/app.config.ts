@@ -4,8 +4,8 @@ export default defineAppConfig({
       primary: 'green',
       neutral: 'slate'
     },
-    main:{
-      base:'min-h-[calc(100vh-var(--ui-header-height))]'
+    main: {
+      base: 'min-h-[calc(100vh-var(--ui-header-height))]'
     }
   }
 })

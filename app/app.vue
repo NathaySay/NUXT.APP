@@ -9,7 +9,7 @@ const items = computed<NavigateBar[]>(() => [
     label: 'Home',
     to: '/',
     icon: 'i-lucide-home',
-    active:  route.path === '/'
+    active: route.path === '/'
   },
   {
     label: 'Dashboard',
@@ -34,19 +34,19 @@ const items = computed<NavigateBar[]>(() => [
 const menus = computed<NavigateFooter[]>(() => [
   {
     label: 'About',
-    to: '/about',
+    to: '/about'
   },
   {
     label: 'Contact',
-    to: '/contact',
+    to: '/contact'
   },
   {
     label: 'Privacy Policy',
-    to: '/privacy-policy',
+    to: '/privacy-policy'
   },
   {
     label: 'Terms of Service',
-    to: '/terms-of-service',
+    to: '/terms-of-service'
   }
 ])
 
@@ -55,7 +55,7 @@ const main = computed<NavigateMain[]>(() => [
     label: 'Dashboard',
     to: '/dashboard',
     icon: 'i-lucide-layout-dashboard',
-    active: true
+    active: route.path === '/dashboard'
   },
   {
     label: 'Tasks',
@@ -88,7 +88,7 @@ const main = computed<NavigateMain[]>(() => [
     active: route.path === '/settings'
   },
   {
-    label:'Help',
+    label: 'Help',
     to: '/help',
     icon: 'i-lucide-help-circle',
     active: route.path === '/help'
@@ -105,12 +105,19 @@ const main = computed<NavigateMain[]>(() => [
 <template>
   <UApp>
     <UHeader class="text-center font-bold text-lg bg-gray-950 text-white">
-      <UNavigationMenu :items="items" class="w-fullscreen " />
-      <UInput type="file"/>
+      <UNavigationMenu
+        :items="items"
+        class="w-fullscreen "
+      />
+      <UInput type="file" />
     </UHeader>
     <UMain>
-      <div class ="flex gap-4">
-          <UNavigationMenu orientation="vertical" :items="main" class="text-2xl text-black p-5 " />
+      <div class="flex gap-4">
+        <UNavigationMenu
+          orientation="vertical"
+          :items="main"
+          class="text-2xl text-black p-5 "
+        />
       </div>
     </UMain>
     <UFooter class="bg-gray-950">
