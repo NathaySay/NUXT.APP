@@ -94,7 +94,21 @@ const main = computed<NavigateMain[]>(() => [
     label: 'Team',
     to: '/team',
     icon: 'i-lucide-users',
-    active: route.path === '/team'
+    active: route.path === '/team',
+    children:[
+      {
+        label: 'Members',
+        to: '/team/members',
+        icon: 'i-lucide-user',
+        active: route.path === '/team/members'
+      },
+      {
+        label: 'Settings',
+        to: '/team/settings',
+        icon: 'i-lucide-settings',
+        active: route.path === '/team/settings'
+      }
+    ]
   },
   {
     label: 'Settings',
