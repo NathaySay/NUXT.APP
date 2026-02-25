@@ -144,7 +144,16 @@ const main = computed<NavigateMain[]>(() => [
   }
 ])
 
+const state = reactive({ fullName: '' })
 
+async function onSubmit() {
+  return new Promise<void>(res => setTimeout(res, 1000))
+}
+
+async function validate(data: Partial<typeof state>) {
+  if (!data.fullName?.length) return [{ name: 'fullName', message: 'Required' }]
+  return []
+}
 </script>
 
 <template>
@@ -153,30 +162,25 @@ const main = computed<NavigateMain[]>(() => [
       <UNavigationMenu :items="items" class="w-fullscreen " />
       <UInput type="file" />
     </UHeader>
-    <UMain>
-      <UButton
-      icon="i-lucide-search"
-      size="lg"
-      color="primary"
-      variant="solid"
-      class="m-2" />
-      <UPricingPlan
-      class="p-4 border rounded-lg shadow-md bg-black max-w-sm mx-auto mt-10"
-      title="Promotion"
-      description="For bootstrappers"
-      price="$249.99"
-      :features="[
-        'One Developer',
-        'Unlimited Plan',
-        'Access to Github',
-        'Unlimited Patch & minor updates',
-        'Lifetime Access'
-      ]"
-      :button="{
-        label: 'Buy Now'
-      }"
-      highlight
-      />
+    <UMain class="p-5">
+      <UForm :state="state" :validate="validate" @submit="onSubmit">
+        <UFormField name="fullName" label="Full name">
+          <UInput v-model="state.fullName" />
+        </UFormField>
+        <UButton type="submit" class="mt-2" loading-auto>
+          Submit
+        </UButton>
+      </UForm>
+      <UPricingPlan class="p-5 border rounded-lg shadow-md bg-black max-w-sm mx-auto mt-10" title="Promotion"
+        description="For bootstrappers" price="$249.99" :features="[
+          'One Developer',
+          'Unlimited Plan',
+          'Access to Github',
+          'Unlimited Patch & minor updates',
+          'Lifetime Access'
+        ]" :button="{
+          label: 'Buy Now'
+        }" highlight />
     </UMain>
     <UFooter class="bg-gray-950">
       <UNavigationMenu :items="menus" />
