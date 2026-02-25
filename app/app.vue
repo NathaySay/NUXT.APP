@@ -95,7 +95,7 @@ const main = computed<NavigateMain[]>(() => [
     to: '/team',
     icon: 'i-lucide-users',
     active: route.path === '/team',
-    children:[
+    children: [
       {
         label: 'Members',
         to: '/team/members',
@@ -121,7 +121,7 @@ const main = computed<NavigateMain[]>(() => [
     to: '/help',
     icon: 'i-lucide-help-circle',
     active: route.path === '/help',
-    children:[
+    children: [
       {
         label: 'Documentation',
         to: '/help/documentation',
@@ -148,23 +148,32 @@ const main = computed<NavigateMain[]>(() => [
 <template>
   <UApp>
     <UHeader title="Welcome" class=" text-center font-bold text-lg bg-gray-950 text-white">
-      <UNavigationMenu
-        :items="items"
-        class="w-fullscreen "
-      />
+      <UNavigationMenu :items="items" class="w-fullscreen " />
       <UInput type="file" />
     </UHeader>
-    <UMain>
-      <div class=" bg-gray-800 w-60 h-240">
-        <UNavigationMenu
-          orientation="vertical"
-          :items="main"
-          class="text-black text-center font-bold "
-        />
-      </div>
+    <UMain class="p-10">
+      <h1 class="text-2xl font-bold text-center mb-5">Dashboard</h1>
+      <UPricingPlan
+      class="p-4 border rounded-lg shadow-md bg-black max-w-sm mx-auto"
+      title="Promotion"
+      description="For bootstrappers"
+      price="$249.99"
+      :features="[
+        'One Developer',
+        'Unlimited Plan',
+        'Access to Github',
+        'Unlimited Patch & minor updates',
+        'Lifetime Access'
+      ]"
+      :button="{
+        label: 'Buy Now'
+      }"
+      highlight
+      />
     </UMain>
     <UFooter class="bg-gray-950">
       <UNavigationMenu :items="menus" />
     </UFooter>
   </UApp>
+  <RouterView />
 </template>
