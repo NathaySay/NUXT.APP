@@ -143,6 +143,8 @@ const main = computed<NavigateMain[]>(() => [
     active: route.path === '/logout'
   }
 ])
+
+
 </script>
 
 <template>
@@ -151,10 +153,15 @@ const main = computed<NavigateMain[]>(() => [
       <UNavigationMenu :items="items" class="w-fullscreen " />
       <UInput type="file" />
     </UHeader>
-    <UMain class="p-10">
-      <h1 class="text-2xl font-bold text-center mb-5">Dashboard</h1>
+    <UMain>
+      <UButton
+      icon="i-lucide-search"
+      size="lg"
+      color="primary"
+      variant="solid"
+      class="m-2" />
       <UPricingPlan
-      class="p-4 border rounded-lg shadow-md bg-black max-w-sm mx-auto"
+      class="p-4 border rounded-lg shadow-md bg-black max-w-sm mx-auto mt-10"
       title="Promotion"
       description="For bootstrappers"
       price="$249.99"
