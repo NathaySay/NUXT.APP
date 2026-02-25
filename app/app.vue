@@ -167,9 +167,6 @@ async function validate(data: Partial<typeof state>) {
         <UFormField name="fullName" label="Full name">
           <UInput v-model="state.fullName" />
         </UFormField>
-        <UButton type="submit" class="mt-2" loading-auto>
-          Submit
-        </UButton>
       </UForm>
       <UPricingPlan class="p-5 border rounded-lg shadow-md bg-black max-w-sm mx-auto mt-10" title="Promotion"
         description="For bootstrappers" price="$249.99" :features="[
