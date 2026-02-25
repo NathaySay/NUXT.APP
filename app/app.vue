@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import type { NavigateBar, NavigateFooter, NavigateMain } from '@nuxt/ui'
 import tailwindcss from '@tailwindcss/vite'
+import { CalendarDate } from '@internationalized/date'
+
+const inputeDate = useTemplateRef('inputDate')
+
+const modelValue = shallowRef(new CalendarDate(2026, 2, 25))
 
 const route = useRoute()
 
@@ -154,6 +159,8 @@ async function validate(data: Partial<typeof state>) {
   if (!data.fullName?.length) return [{ name: 'fullName', message: 'Required' }]
   return []
 }
+
+
 </script>
 
 <template>
@@ -166,8 +173,22 @@ async function validate(data: Partial<typeof state>) {
       <UForm :state="state" :validate="validate" @submit="onSubmit">
         <UFormField name="fullName" label="Full name">
           <UInput v-model="state.fullName" />
+          <UButton type="submit" class="mt-2 ml-2" loading-auto>
+            Submit
+          </UButton>
         </UFormField>
       </UForm>
+      <UInputDate ref="inputDate" v-model="modelValue" class="mt-5">
+        <template #trailing>
+          <UPopover :reference="inputeDate?.inputsRef[3]?.$el">
+            <UButton color="neutral" variant="link" size="sm" aria-label="Select Date" class="px-0"
+              icon="i-lucide-calendar" />
+              <template #content>
+                <UCalendar v-model="modelValue" />
+              </template>
+          </UPopover>
+        </template>
+      </UInputDate>
       <UPricingPlan class="p-5 border rounded-lg shadow-md bg-black max-w-sm mx-auto mt-10" title="Promotion"
         description="For bootstrappers" price="$249.99" :features="[
           'One Developer',
@@ -182,6 +203,6 @@ async function validate(data: Partial<typeof state>) {
     <UFooter class="bg-gray-950">
       <UNavigationMenu :items="menus" />
     </UFooter>
+    <RouterView />
   </UApp>
-  <RouterView />
 </template>
