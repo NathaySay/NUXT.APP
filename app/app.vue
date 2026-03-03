@@ -55,99 +55,6 @@ const menus = computed<NavigateFooter[]>(() => [
   }
 ])
 
-const main = computed<NavigateMain[]>(() => [
-  {
-    label: 'Dashboard',
-    to: '/dashboard',
-    icon: 'i-lucide-layout-dashboard',
-    active: true
-  },
-  {
-    label: 'Tasks',
-    to: '/tasks',
-    icon: 'i-lucide-list-check',
-    active: route.path === '/tasks',
-    defaultOpen: false,
-    children: [
-      {
-        label: 'My Tasks',
-        to: '/tasks/my',
-        icon: 'i-lucide-user',
-        active: route.path === '/tasks/my'
-      },
-      {
-        label: 'Team Tasks',
-        to: '/tasks/team',
-        icon: 'i-lucide-users',
-        active: route.path === '/tasks/team'
-      }
-    ]
-  },
-  {
-    label: 'Calendar',
-    to: '/calendar',
-    icon: 'i-lucide-calendar',
-    active: route.path === '/calendar'
-  },
-  {
-    label: 'Analytics',
-    to: '/analytics',
-    icon: 'i-lucide-bar-chart-2',
-    active: route.path === '/analytics'
-  },
-  {
-    label: 'Team',
-    to: '/team',
-    icon: 'i-lucide-users',
-    active: route.path === '/team',
-    children: [
-      {
-        label: 'Members',
-        to: '/team/members',
-        icon: 'i-lucide-user',
-        active: route.path === '/team/members'
-      },
-      {
-        label: 'Settings',
-        to: '/team/settings',
-        icon: 'i-lucide-settings',
-        active: route.path === '/team/settings'
-      }
-    ]
-  },
-  {
-    label: 'Settings',
-    to: '/settings',
-    icon: 'i-lucide-settings',
-    active: route.path === '/settings'
-  },
-  {
-    label: 'Help',
-    to: '/help',
-    icon: 'i-lucide-help-circle',
-    active: route.path === '/help',
-    children: [
-      {
-        label: 'Documentation',
-        to: '/help/documentation',
-        icon: 'i-lucide-file-text',
-        active: route.path === '/help/documentation'
-      },
-      {
-        label: 'Call 24/7',
-        to: '/help/call',
-        icon: 'i-lucide-phone',
-        active: route.path === '/help/call'
-      }
-    ]
-  },
-  {
-    label: 'Logout',
-    to: '/logout',
-    icon: 'i-lucide-log-out',
-    active: route.path === '/logout'
-  }
-])
 
 const state = reactive({ fullName: '' })
 
@@ -159,8 +66,6 @@ async function validate(data: Partial<typeof state>) {
   if (!data.fullName?.length) return [{ name: 'fullName', message: 'Required' }]
   return []
 }
-
-
 </script>
 
 <template>
