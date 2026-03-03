@@ -97,7 +97,7 @@ async function validate(data: Partial<typeof state>) {
 }
 </script>
 
-<template>
+<template class="w-screen">
   <UApp>
     <UHeader title="Welcome" class=" text-center font-bold text-lg bg-gray-950 text-white">
       <template #body>
@@ -106,11 +106,11 @@ async function validate(data: Partial<typeof state>) {
         </div>
       </template>
     </UHeader>
-    <UMain class="p-5">
-      <UUser name="Admin" description="FullStack Developer" :avatar="{
+    <UMain class="p-5 ">
+      <UUser name="ADMIN" description="FullStack Developer" :avatar="{
       }" :chip="{
         color: 'primary',
-        position: 'top-right',
+        position: 'top-right'
       }" />
       <UForm :state="state" :validate="validate" @submit="onSubmit">
         <UFormField class="mt-5" name="fullName" label="Subject">
@@ -142,9 +142,15 @@ async function validate(data: Partial<typeof state>) {
           label: 'Buy Now'
         }" highlight />
     </UMain>
+    <UMarquee class="mb-5">
+      <UIcon name="i-simple-icons-discord" class="size-10 shrink-0"/>
+      <UIcon name="i-simple-icons-instagram" class="size-10 shrink-0" />
+      <UIcon name="i-simple-icons-facebook" class="size-10 shrink-0" />
+      <UIcon name="i-simple-icons-x" class="size-10 shrink-0" />
+    </UMarquee>
     <UFooter class="bg-gray-950">
       <UNavigationMenu :items="menus" />
     </UFooter>
-    <RouterView />
+    <!-- <RouterView /> -->
   </UApp>
 </template>
