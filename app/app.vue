@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import type { NavigateBar, NavigateFooter, NavigateMain } from '@nuxt/ui'
-import tailwindcss from '@tailwindcss/vite'
 import { CalendarDate } from '@internationalized/date'
 
 const inputeDate = useTemplateRef('inputDate')
 
-const modelValue = shallowRef(new CalendarDate(2026, 2, 25))
+const today = new Date()
+
+const modelValue = shallowRef(new CalendarDate(
+  today.getFullYear(),
+  today.getMonth() + 1,
+  today.getDate()
+))
 
 const route = useRoute()
 
@@ -17,10 +22,22 @@ const items = computed<NavigateBar[]>(() => [
     active: route.path === '/'
   },
   {
+    label: 'Profile',
+    to: '/profile',
+    icon: 'i-lucide-user',
+    active: route.path === '/profile'
+  },
+  {
     label: 'Dashboard',
     to: '/dashboard',
     icon: 'i-lucide-layout-dashboard',
     active: route.path === '/dashboard'
+  },
+  {
+    label:'Tasks',
+    to: '/tasks',
+    icon: 'i-lucide-list-check',
+    active: route.path === '/tasks'
   },
   {
     label: 'Settings',
@@ -29,10 +46,22 @@ const items = computed<NavigateBar[]>(() => [
     active: route.path === '/settings'
   },
   {
-    label: 'Profile',
-    to: '/profile',
-    icon: 'i-lucide-user',
-    active: route.path === '/profile'
+    label: 'Contacts',
+    to: '/contacts',
+    icon: 'i-lucide-users',
+    active: route.path === '/contacts'
+  },
+  {
+    label: 'Support Center',
+    to: '/support',
+    icon: 'i-lucide-headphones',
+    active: route.path === '/support'
+  },
+  {
+    label: 'Logout',
+    to: '/logout',
+    icon: 'i-lucide-log-out',
+    active: route.path === '/logout'
   }
 ])
 
@@ -52,7 +81,7 @@ const menus = computed<NavigateFooter[]>(() => [
   {
     label: 'Terms of Service',
     to: '/terms-of-service'
-  }
+  },
 ])
 
 
@@ -71,12 +100,20 @@ async function validate(data: Partial<typeof state>) {
 <template>
   <UApp>
     <UHeader title="Welcome" class=" text-center font-bold text-lg bg-gray-950 text-white">
-      <UNavigationMenu :items="items" class="w-fullscreen " />
-      <UInput type="file" />
+      <template #body>
+        <div class="space-y-4">
+          <UNavigationMenu :items="items" orientation="vertical" class="w-48" />
+        </div>
+      </template>
     </UHeader>
     <UMain class="p-5">
+      <UUser name="Admin" description="FullStack Developer" :avatar="{
+      }" :chip="{
+        color: 'primary',
+        position: 'top-right',
+      }" />
       <UForm :state="state" :validate="validate" @submit="onSubmit">
-        <UFormField name="fullName" label="Full name">
+        <UFormField class="mt-5" name="fullName" label="Subject">
           <UInput v-model="state.fullName" />
           <UButton type="submit" class="mt-2 ml-2" loading-auto>
             Submit
@@ -88,9 +125,9 @@ async function validate(data: Partial<typeof state>) {
           <UPopover :reference="inputeDate?.inputsRef[3]?.$el">
             <UButton color="neutral" variant="link" size="sm" aria-label="Select Date" class="px-0"
               icon="i-lucide-calendar" />
-              <template #content>
-                <UCalendar v-model="modelValue" />
-              </template>
+            <template #content>
+              <UCalendar v-model="modelValue" />
+            </template>
           </UPopover>
         </template>
       </UInputDate>

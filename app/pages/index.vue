@@ -4,6 +4,7 @@ import { upperFirst } from 'scule'
 import type { TableColumn } from '@nuxt/ui'
 import { useClipboard } from '@vueuse/core'
 
+const UButton = resolveComponent('UButton')
 const UCheckbox = resolveComponent('UCheckbox')
 const UBadge = resolveComponent('UBadge')
 const UDropdownMenu = resolveComponent('UDropdownMenu')
@@ -12,7 +13,7 @@ const toast = useToast()
 const { copy } = useClipboard()
 
 type Payment = {
-  id: string
+  id:  string
   date: string
   status: 'paid' | 'failed' | 'refunded'
   email: string
@@ -286,7 +287,11 @@ function randomize() {
         @update:model-value="table?.tableApi?.getColumn('email')?.setFilterValue($event)"
       />
 
-      <UButton color="neutral" label="Randomize" @click="randomize" />
+      <UButton
+        color="neutral"
+        label="Randomize"
+        @click="randomize"
+      />
 
       <UDropdownMenu
         :items="table?.tableApi?.getAllColumns().filter(column => column.getCanHide()).map(column => ({
